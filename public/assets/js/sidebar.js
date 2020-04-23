@@ -4,7 +4,6 @@ function setDashboard() {
 
     switch (roleFromLocal) {
         case 1:
-            console.log(123)
             window.location.assign("dashboard-student.html");
             break;
         case 2:
@@ -17,5 +16,22 @@ function setDashboard() {
             window.location.assign("dashboard-admin.html");
             break;
     }
-    console.log(role == 1)
 }
+
+$(document).ready(function() {
+    // var path = window.location.pathname;
+    // var page = path.split("/").pop();
+    // console.log(page);
+    // // Get all link element
+    // var container = document.getElementsByClassName("nav");
+    // var lis = container[0].getElementsByTagName("li");
+    
+    // // Loop through the links and add the active class to the current/clicked link
+    // for (var i = 0; i < lis.length; i++) {
+    //     var tag = lis[i].getElementsByTagName("p");
+    //     if(tag[0].innerHTML === page)
+    //     {
+    //         lis[i].className = 'nav-item active';
+    //     }
+    // }
+});

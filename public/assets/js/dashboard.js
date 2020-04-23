@@ -17,9 +17,6 @@ var mobile_menu_visible = 0,
 $(document).ready(function() {
     window_width = $(window).width();
 
-    // check if there is an image set for the sidebar's background
-    lbd.checkSidebarImage();
-
     // Init navigation toggle for small screens
     if (window_width <= 991) {
         lbd.initRightMenu();
@@ -27,11 +24,6 @@ $(document).ready(function() {
 
     //  Activate the tooltips
     $('[rel="tooltip"]').tooltip();
-
-    //      Activate regular switches
-    if ($("[data-toggle='switch']").length != 0) {
-        $("[data-toggle='switch']").bootstrapSwitch();
-    }
 
     $('.form-control').on("focus", function() {
         $(this).parent('.input-group').addClass("input-group-focus");
@@ -55,21 +47,6 @@ $(window).resize(function() {
 lbd = {
     misc: {
         navbar_menu_visible: 0
-    },
-    checkSidebarImage: function() {
-        $sidebar = $('.sidebar');
-        image_src = $sidebar.data('image');
-
-        if (image_src !== undefined) {
-            sidebar_container = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>'
-            $sidebar.append(sidebar_container);
-        } else if (mobile_menu_initialized == true) {
-            // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
-            $sidebar_wrapper.find('.navbar-form').remove();
-            $sidebar_wrapper.find('.nav-mobile-menu').remove();
-
-            mobile_menu_initialized = false;
-        }
     },
 
     initRightMenu: function() {
@@ -203,4 +180,18 @@ dashboard = {
             }
         });
     }
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
 }
