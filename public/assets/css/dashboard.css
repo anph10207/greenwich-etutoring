@@ -5138,7 +5138,7 @@ License - nucleoapp.com/license/
 
 .nc-vector::before {
     content: "\ea62";
-}
+}x
 
 .nc-watch-time::before {
     content: "\ea63";
@@ -5147,5 +5147,7 @@ License - nucleoapp.com/license/
 .nc-zoom-split::before {
     content: "\ea64";
 }
+
+
 
 /* all icon font classes list here */

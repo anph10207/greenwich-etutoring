@@ -1,3 +1,5 @@
+const accessToken = JSON.parse(localStorage.getItem("credentials")).accessToken;
+
 var searchVisible = 0;
 var transparent = true;
 
