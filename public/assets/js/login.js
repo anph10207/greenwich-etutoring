@@ -16,6 +16,8 @@ function login() {
     })
         .then(function (res) {
             localStorage.setItem("credentials", JSON.stringify(res.data.data));
+            localStorage.setItem("firstname", JSON.stringify(res.data.data.firstName));
+            localStorage.setItem("role", JSON.stringify(res.data.data.role.id));
             const role = res.data.data.role.id;
             switch (role) {
                 case 1:
