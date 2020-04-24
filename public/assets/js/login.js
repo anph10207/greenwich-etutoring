@@ -1,11 +1,10 @@
 function login() {
     const email = document.getElementById("txtUsername").value;
     const password = document.getElementById("txtPassword").value;
-
-
+    
     axios({
         method: "POST",
-        url: "http://34.87.179.204:9090/user/login",
+        url: host_url +"/user/login",
         headers: {
             'Content-Type': 'application/json'
         },

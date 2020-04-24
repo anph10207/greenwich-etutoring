@@ -8,30 +8,7 @@ function updateProfile() {
     const dob = document.getElementById("txtDOB").value;
     
 
-    axios({
-        method: "POST",
-        url: host_url + "/user/updateInfo",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: {
-            firstName,
-            lastName,
-            dob,
-            address,
-            email
-        }
-    })
-        .then(function (res) {
-            localStorage.setItem("credentials", JSON.stringify(res.data.data));
-            localStorage.setItem("firstname", JSON.stringify(res.data.data.firstName));
-            $('#confirmUpdate').modal('hide');
-            console.log(res.data);
-        })
-        .catch(function (error) {
-            alert("Updating fail.")
-            console.log(error);
-        });
+    
 }
 
 $(document).ready(function() {
@@ -39,6 +16,26 @@ $(document).ready(function() {
     var userInfo = JSON.parse(credentials);
     const isInLoginPage = window.location.pathname === "login.html";
   
+    var studentLst = null
+    var roleId = 3;
+    axios({
+        method: "GET",
+        url: host_url + "/user/filter",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: {
+            roleId
+        }
+    })
+        .then(function (res) {
+            console.log("1 " +JSON.stringify(res.data.data));
+            console.log("2 " +res.data);
+        })
+        .catch(function (error) {
+            console.log("3 " + error);
+        });
+return;
     if (credentials) {
         if (isInLoginPage) {
             window.location.assign("index.html");

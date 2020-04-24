@@ -27,3 +27,7 @@ function checkAuthentication() {
   }
 }
 checkAuthentication();
+var host_url = null;
+$.getJSON( "../../config.json", function( json ) {
+    host_url = json.server_host;
+});
