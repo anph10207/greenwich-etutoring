@@ -1,7 +1,6 @@
 function updateProfile() {
     const firstName = document.getElementById("txtFirstName").value;
     const lastName = document.getElementById("txtLastName").value;
-    const email = document.getElementById("txtEmail").value;
     const address = document.getElementById("txtAddress").value;
     const dob = document.getElementById("txtDOB").value;
     
