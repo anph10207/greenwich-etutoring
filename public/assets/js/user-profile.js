@@ -1,4 +1,7 @@
 function updateProfile() {
+    const credentials = localStorage.getItem("credentials");
+    var userInfo = JSON.parse(credentials);
+    const email = userInfo.email;
     const firstName = document.getElementById("txtFirstName").value;
     const lastName = document.getElementById("txtLastName").value;
     const address = document.getElementById("txtAddress").value;
