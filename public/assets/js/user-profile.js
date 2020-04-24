@@ -25,6 +25,7 @@ function updateProfile() {
         .then(function (res) {
             localStorage.setItem("credentials", JSON.stringify(res.data.data));
             localStorage.setItem("firstname", JSON.stringify(res.data.data.firstName));
+            $('#confirmUpdate').modal('hide');
             console.log(res.data);
         })
         .catch(function (error) {
@@ -53,3 +54,33 @@ $(document).ready(function() {
     }    
 });
 
+function changepassword() {
+    const credentials = localStorage.getItem("credentials");
+    var userInfo = JSON.parse(credentials);
+    const email = userInfo.email;
+    const password = document.getElementById("txtoldpassword").value;
+    const newPassword = document.getElementById("txtnewpassword").value;
+
+    axios({
+        method: "POST",
+        url: "http://34.87.179.204:9090/user/updatePassword",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: {
+            email,
+            password,
+            newPassword
+        }
+    })
+        .then(function (res) {
+            alert("Change Password Successfully")
+            $('#changePassword').modal('hide');
+            console.log(res.data)
+        })
+        .catch(function (error) {
+            alert("Wrong Password")
+            console.log(error);
+            
+        });
+}
