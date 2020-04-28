@@ -1945,7 +1945,7 @@ fieldset[disabled] .form-control {
 }
 
 .navbar.fixed {
-    width: calc(100% - $sidebar-width);
+    width: calc(100%);
     right: 0;
     left: auto;
     border-radius: 0;
@@ -5147,7 +5147,5 @@ License - nucleoapp.com/license/
 .nc-zoom-split::before {
     content: "\ea64";
 }
-
-
-
 /* all icon font classes list here */
+
