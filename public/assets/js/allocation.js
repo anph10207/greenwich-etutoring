@@ -141,7 +141,56 @@ function update() {
     if (ck == 1){
         lst = lst.substring(0, lst.length - 1);
     }
-    console.log(lst);
+    var droptutor = document.getElementById("tutorListContent");
+    var tutorId = droptutor.options[droptutor.selectedIndex].value
+    var studentIds = lst.split(',');
+    axios({
+        method: "PUT",
+        url: host_url + "/user/assignStudents",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: {
+            studentIds,
+            tutorId
+        }
+    })
+        .then(function (res) {
+            console.log(res.data);
+            lst = "";
+        var rows2 = document.getElementById("studentListContentNoTutor").getElementsByTagName("tr");
+        for(var i = 0; i < rows2.length; i++) {
+            lst += rows2[i].cells[0].innerHTML + ",";
+            ck = 1;
+        }
+        if (ck == 1){
+            lst = lst.substring(0, lst.length - 1);
+        }
+        studentIds = lst.split(',');
+        tutorId = -1;
+        axios({
+            method: "PUT",
+            url: host_url + "/user/assignStudents",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                studentIds,
+                tutorId
+            }
+        })
+            .then(function (res) {
+                console.log(res.data);
+                window.location.reload(true);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        
 }
 
 $(document).ready(function() {
