@@ -77,7 +77,6 @@ function changepassword() {
         })
         .catch(function (error) {
             alert("Wrong Password")
-            console.log(error);
-            
+            console.log(error);            
         });
 }

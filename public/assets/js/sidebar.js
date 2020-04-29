@@ -19,19 +19,20 @@ function setDashboard() {
 }
 
 $(document).ready(function() {
-    // var path = window.location.pathname;
-    // var page = path.split("/").pop();
-    // console.log(page);
-    // // Get all link element
-    // var container = document.getElementsByClassName("nav");
-    // var lis = container[0].getElementsByTagName("li");
-    
-    // // Loop through the links and add the active class to the current/clicked link
-    // for (var i = 0; i < lis.length; i++) {
-    //     var tag = lis[i].getElementsByTagName("p");
-    //     if(tag[0].innerHTML === page)
-    //     {
-    //         lis[i].className = 'nav-item active';
-    //     }
-    // }
+    const role = localStorage.getItem("role");
+    console.log(document.getElementById("adminmn").style);
+    console.log(document.getElementById("adminmn").style.display);
+    if (role == 1){
+        document.getElementById("adminmn").remove();
+        document.getElementById("staffmn").remove();
+    } else if (role == 2){
+        document.getElementById("adminmn").remove();
+        document.getElementById("staffmn").remove();
+    } else if (role == 3){
+        document.getElementById("adminmn").remove();
+        document.getElementById("chatmn").remove();
+    } else if (role == 4){
+        document.getElementById("staffmn").remove();
+        document.getElementById("chatmn").remove();
+    }
 });
