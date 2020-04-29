@@ -38,3 +38,13 @@ function login() {
             console.log(error);
         });
 }
+
+$(document).ready(function() {
+    var input = document.getElementById("txtPassword");
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("smit").click();
+        }
+    });
+});

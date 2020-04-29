@@ -1,9 +1,8 @@
 function getalltutor() {
     var tutorList = [];
-
     axios({
         method: "GET",
-        url: "//34.87.179.204:9090/user/filter",
+        url: host_url + "/user/filter",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -22,11 +21,10 @@ function getalltutor() {
 }
 
 function createTuTorList(list) {
-    var content = "";
+    var content = '<option value="-1">Please Choose Tutor</option>';
     for (var i = 0; i < list.length; i++) {
         const tutor = list[i];
-        content += ` 
-    <option value="-1">Please Choose Tutor</option>
+        content += `     
       <option value="${tutor.id}">${tutor.firstName + " " + tutor.lastName}</option>`;
     }
     document.getElementById("tutorListContent").innerHTML = content;
@@ -39,7 +37,7 @@ function getstudentoftutor() {
 
     axios({
         method: "GET",
-        url: "http://34.87.179.204:9090/user/getStudents",
+        url: host_url + "/user/getStudents",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -61,14 +59,14 @@ function createStudentList(list) {
     for (var i = 0; i < list.length; i++) {
         const student = list[i];
         content += `
-        <tr>
+        <tr id="student${student.id}">
         <td>${student.id}</td>
         <td>${student.firstName + " " + student.lastName}</td>
         <td>${student.email}</td>
         <td>
-            <button class="btn btn-primary btn-fill" id="">REMOVE</button>
+            <button onclick="switchStudent(this, ${student.id})" class="btn btn-danger btn-fill btn-sm" id="${student.id}">Remove</button>
         </td>
-        <tr>
+        </tr>
         `
     }
     document.getElementById("studentListContent").innerHTML = content;
@@ -79,7 +77,7 @@ function getAllStudentNoTutor() {
 
     axios({
         method: "GET",
-        url: "http://34.87.179.204:9090/user/filter",
+        url: host_url + "/user/filter",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -102,18 +100,51 @@ function createStudentListNoTutor(list) {
     for (var i = 0; i < list.length; i++) {
         const student = list[i];
         content += `
-        <tr>
+        <tr id="student${student.id}">
         <td>${student.id}</td>
         <td>${student.firstName + " " + student.lastName}</td>
         <td>${student.email}</td>
         <td>
-            <button class="btn btn-danger btn-fill" id="">REMOVE</button>
+            <button onclick="switchStudent(this, ${student.id})" class="btn btn-warning btn-fill btn-sm" id="${student.id}">Assign</button>
         </td>
-        <tr>
+        </tr>
         `
     }
     document.getElementById("studentListContentNoTutor").innerHTML = content;
 }
 
-getAllStudentNoTutor();
-getalltutor();
+function switchStudent(obj, id) {
+    var record = document.getElementById("student" + id);
+    var tbl = document.getElementById("student" + id).parentElement;
+    if (tbl.id == 'studentListContentNoTutor')
+    {
+        document.getElementById('studentListContent').appendChild(record);
+        obj.textContent = 'Remove';
+        obj.className = "btn btn-danger btn-fill btn-sm";
+    }
+    if (tbl.id == 'studentListContent')
+    {
+        document.getElementById('studentListContentNoTutor').appendChild(record);
+        obj.textContent = 'Assign';
+        obj.className = "btn btn-warning btn-fill btn-sm";
+    }
+}
+
+function update() {
+    var lst = "";
+    var ck = 0;
+    var rows = document.getElementById("studentListContent").getElementsByTagName("tr");
+    for(var i = 0; i < rows.length; i++) {
+        lst += rows[i].cells[0].innerHTML + ",";
+        ck = 1;
+    }
+    if (ck == 1){
+        lst = lst.substring(0, lst.length - 1);
+    }
+    console.log(lst);
+}
+
+$(document).ready(function() {
+    getAllStudentNoTutor();
+    getalltutor();
+});
