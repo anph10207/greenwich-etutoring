@@ -1337,6 +1337,14 @@ fieldset[disabled] .btn-neutral.active {
     color: #3b5998;
 }
 
+.btn-custom:hover {background-color: #3e8e41}
+
+.btn-custom:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .form-control::-moz-placeholder {
     color: #DDDDDD;
     opacity: 1;
