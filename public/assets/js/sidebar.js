@@ -50,5 +50,7 @@ function setActive(mnId) {
         document.getElementById("dashmn").className = "";
     if (document.getElementById("adminmn") != null)
         document.getElementById("adminmn").className = "";
+    if (document.getElementById("documentmn") != null)
+        document.getElementById("documentmn").className = "";
     document.getElementById(mnId).className = "nav-item active";
 }
