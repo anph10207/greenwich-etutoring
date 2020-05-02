@@ -1,5 +1,6 @@
 function getalltutor() {
     var tutorList = [];
+    var host_url = localStorage.getItem("host_url");
     axios({
         method: "GET",
         url: host_url + "/user/filter",
@@ -8,7 +9,9 @@ function getalltutor() {
         },
         params: {
             roleId: 2,
-            tutorFlag: false
+            tutorFlag: false,
+            start: 0,
+            limit: 10
         }
     })
         .then(function (res) {
@@ -30,11 +33,11 @@ function createTuTorList(list) {
     document.getElementById("tutorListContent").innerHTML = content;
 }
 
-function getstudentoftutor() {
+function getstudentoftutor(start = 0, limit = 100) {
     var droptutor = document.getElementById("tutorListContent");
     var tutorId = droptutor.options[droptutor.selectedIndex].value
     var studentList = [];
-
+    var host_url = localStorage.getItem("host_url");
     axios({
         method: "GET",
         url: host_url + "/user/getStudents",
@@ -43,6 +46,8 @@ function getstudentoftutor() {
         },
         params: {
             tutorId,
+            start,
+            limit
         }
     })
         .then(function (res) {
@@ -72,9 +77,9 @@ function createStudentList(list) {
     document.getElementById("studentListContent").innerHTML = content;
 }
 
-function getAllStudentNoTutor() {
+function getAllStudentNoTutor(start = 0, limit = 100) {
     var studentListNoTutor = [];
-
+    var host_url = localStorage.getItem("host_url");
     axios({
         method: "GET",
         url: host_url + "/user/filter",
@@ -83,7 +88,9 @@ function getAllStudentNoTutor() {
         },
         params: {
             roleId: 1,
-            tutorFlag: false
+            tutorFlag: false,
+            start,
+            limit
         }
     })
         .then(function (res) {
@@ -144,6 +151,7 @@ function update() {
     var droptutor = document.getElementById("tutorListContent");
     var tutorId = droptutor.options[droptutor.selectedIndex].value
     var studentIds = lst.split(',');
+    var host_url = localStorage.getItem("host_url");
     axios({
         method: "PUT",
         url: host_url + "/user/assignStudents",
