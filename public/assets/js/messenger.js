@@ -17,8 +17,8 @@ $(document).ready(function () {
             + ` ${userInfo.tutor.lastName}</span></a> </li>`;
         document.getElementById("chat_lst").innerHTML = content;
         stuId = userInfo.id;
-        tutId = userInfo.tutorId;
-        getMessage(stuId, stuId, tutId, 0, 20);
+        tutId = userInfo.tutor.id;
+        getMessage(stuId, tutId, stuId, 0, 20);
     } else {
         tutId = userInfo.id;
         getstudentoftutor(tutId);
