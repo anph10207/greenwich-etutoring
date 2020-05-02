@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Greenwich etutoring system</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/dashboard.css " rel="stylesheet" />
+    <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="./assets/js/auth.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="ref-sidebar">
+            <script>
+                $("#ref-sidebar").load("../components/sidebar.html");
+            </script>
+        </div>
+        <div class="main-panel">
+            <div id="ref-navbar">
+                <script>
+                    $("#ref-navbar").load("../components/navbar.html");
+                </script>
+            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form id="fileUploadForm" action="/" enctype="multipart/form-data">
+                                    <fieldset>
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <input type="hidden" id="filename" name="filename" value="">
+                                                            <input type="file" id="uploadedFile" name="uploadedFile"
+                                                                class="form-control form-control-sm"
+                                                                accept=".docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <div class="input-group-btn">
+                                                                <input type="submit" value="Upload"
+                                                                    class="rounded-0 btn btn-primary">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <div class="col-md-6">
+                                    <div class="chat-list-box">
+                                        <div class="head-box">
+                                            <ul class="list-inline text-left d-inline-block float-left">
+                                                <li> <img src="https://i.ibb.co/fCzfFJw/person.jpg" id="user_img" alt=""
+                                                        style="width: 40px; height: 40px;"> </li>
+                                            </ul>
+                                            <ul class="list-inline text-right d-inline-block float-right">
+                                                <li> <a class="text-white" id="user_name"> </a> </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="chat-person-list">
+                                            <ul class="list-inline" id="chat_lst">
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div> <!-- col-md-4 closed -->
+                            </div>
+                            <div class="col-md-6">
+                                <div id="mess_section" class="col-md-12 message-section container-fluid">
+                                </div>
+                                <div class="col-md-12 message-input-section">
+                                    <div class="row">
+                                        <textarea class="col-md-10" id="txtMess" placeholder="Write your comment here"
+                                            name="comment"></textarea>
+                                        <button id="btn_sendMess" class="btn btn-info btn-fill col-md-2"
+                                            type="button">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div id="ref-footer">
+                <script>
+                    $("#ref-footer").load("../components/footer.html");
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="../assets/js/dashboard.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        dashboard.showNotification();
+    });
+</script>
+
+</html>

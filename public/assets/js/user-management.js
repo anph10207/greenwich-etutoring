@@ -14,6 +14,7 @@ function createUser() {
     const role = dropRole.options[dropRole.selectedIndex].value;
     var dropGender = document.getElementById("positionGender");
     const gender = dropGender.options[dropGender.selectedIndex].value;
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "POST",
@@ -35,6 +36,7 @@ function createUser() {
         .then(function (res) {
             alert("Create User Successfully")
             $('#modalCreateUser').modal('hide');
+            window.location.reload()
         })
         .catch(function (error) {
             alert("Create User Fail")
@@ -48,6 +50,7 @@ function changePass() {
     const credentials = localStorage.getItem("credentials");
     var userInfo = JSON.parse(credentials);
     const admin_id = userInfo.id;
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "PUT",
@@ -78,6 +81,7 @@ function changeRole() {
     const admin_id = userInfo.id;
     var dropId = document.getElementById("position");
     const role_id = dropId.options[dropId.selectedIndex].value;
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "PUT",
@@ -106,6 +110,7 @@ function deleteUser() {
     const credentials = localStorage.getItem("credentials");
     var userInfo = JSON.parse(credentials);
     const admin_id = userInfo.id;
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "GET",
@@ -132,6 +137,7 @@ function deleteUser() {
 //Get List Tutor
 function getAllTutor() {
     var tutorList = [];
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "GET",
@@ -185,6 +191,7 @@ function createTuTorList(list) {
 //Get List Student
 function getAllStudent() {
     var studentList = []
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "GET",
@@ -236,6 +243,7 @@ function createStudentList(list) {
 //Get List Staff
 function getAllStaff() {
     var staffList = []
+    var host_url = localStorage.getItem("host_url");
 
     axios({
         method: "GET",
