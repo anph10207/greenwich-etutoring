@@ -6,7 +6,7 @@ function getId(id) {
 function createUser() {
     const firstName = document.getElementById("txtFirstName").value;
     const lastName = document.getElementById("txtLastName").value;
-    const dob = document.getElementById("txtDob").value;
+    const dob = formatDate(document.getElementById("txtDob").value);
     const email = document.getElementById("txtEmail").value;
     const password = document.getElementById("txtPassword").value;
     const address = document.getElementById("txtAddress").value;
@@ -17,7 +17,7 @@ function createUser() {
 
     axios({
         method: "POST",
-        url: host_url + "/user",
+        url: host_url + "/user/",
         headers: {
             'Content-Type': 'application/json'
         },
