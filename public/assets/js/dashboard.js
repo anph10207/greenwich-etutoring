@@ -1,4 +1,4 @@
-const accessToken = JSON.parse(localStorage.getItem("credentials")).accessToken;
+//const accessToken = JSON.parse(localStorage.getItem("credentials")).accessToken;
 
 var searchVisible = 0;
 var transparent = true;
@@ -84,7 +84,6 @@ lbd = {
 
             mobile_menu_initialized = true;
         } else {
-            console.log('window with:' + $(window).width());
             if ($(window).width() > 991) {
                 // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
                 $sidebar_wrapper.find('.navbar-form').remove();
@@ -194,4 +193,27 @@ function formatDate(date) {
         day = '0' + day;
 
     return [year, month, day].join('-');
+}
+
+function formatDateNTime(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    var date = [year, month, day].join('-');
+
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return date + " " + strTime;
 }

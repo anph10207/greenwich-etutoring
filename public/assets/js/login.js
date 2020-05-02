@@ -1,7 +1,7 @@
 function login() {
     const email = document.getElementById("txtUsername").value;
     const password = document.getElementById("txtPassword").value;
-    
+    var host_url = localStorage.getItem("host_url");
     axios({
         method: "POST",
         url: host_url +"/user/login",
@@ -40,6 +40,9 @@ function login() {
 }
 
 $(document).ready(function() {
+    const host_url = $.getJSON( "../../config.json", function( json ) {
+        localStorage.setItem("host_url", json.server_host);
+    });    
     var input = document.getElementById("txtPassword");
     input.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {

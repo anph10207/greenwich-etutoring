@@ -108,10 +108,11 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="author">
-                                        <a href="#">
-                                            <img class="avatar border-gray" src="../assets/img/faces/face-3.jpg" alt="...">
+                                        <a href="#" onclick="changeAvatar()">
+                                            <img id="avatar_img" class="avatar border-gray" src="../assets/img/faces/face-0.jpg" alt="...">                                            
                                             <h5 class="title" id="txtFName">Mike Andrew</h5>
                                         </a>
+                                        <input type="file" id="avatar_input" style="display: none;" onchange="uploadAvatar()">
                                     </div>
                                 </div>
                             </div>
