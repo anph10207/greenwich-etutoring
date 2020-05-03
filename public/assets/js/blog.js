@@ -65,7 +65,7 @@ function createBlogList(list) {
             <img src="./assets/img/woods.jpg" alt="Nature" style="width:100%">
                 <div class="w3-container">
                     <h3><b>${blog.name}</b></h3>
-                    <h5>${blog.name}, <span class="w3-opacity">April 7, 2014</span></h5>
+                    <h5>${blog.name}, <span class="w3-opacity">${formatDate(blog.createdDate)}</span></h5>
                 </div>
                 <div class="w3-container">
                     <p>${blog.body}</p>
