@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Greenwich etutoring system</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/dashboard.css " rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/blog.css">
+    <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="./assets/js/auth.js"></script>
+
+</head>
+
+<body class="w3-light-grey">
+    <div class="wrapper">
+        <div id="ref-sidebar">
+            <script>
+                $("#ref-sidebar").load("../components/sidebar.html");
+            </script>
+        </div>
+        <div class="main-panel">
+            <div id="ref-navbar">
+                <script>
+                    $("#ref-navbar").load("../components/navbar.html");
+                </script>
+            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Header -->
+                    <header class="w3-container w3-center w3-padding-32">
+                        <h1><b>MY BLOG</b></h1>
+                        <p>Welcome to the blog of <span class="w3-tag" id="txtFullName">unknown</span></p>
+                        <button type="button" class="btn btn-danger btn-fill pull-left" data-toggle="modal" data-target="#modalCreateBlog">New Post</button>
+                    </header>
+                    <div class="w3">
+                        <div class="w3-container" id="getDataBlog">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ref-footer">
+                <script>
+                    $("#ref-footer").load("../components/footer.html");
+                </script>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Create Blog -->
+    <div class="modal" id="modalCreateBlog" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Blog</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="txtTitleName" type="text" class="form-control" placeholder="Titile Name">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="col-md-12" id="txtBody" placeholder="Write here" name="comment"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="createBlog()" type="button" class="btn btn-primary btn-fill">Confirm</button>
+                    <button type="button" class="btn btn-secondary btn-fill" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Update Blog -->
+    <div class="modal" id="modalUpdateBlog" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea class="col-md-12" id="txtFixBody" placeholder="Write here" name="comment"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="updateBlog()" type="button" class="btn btn-primary btn-fill">Confirm</button>
+                    <button type="button" class="btn btn-secondary btn-fill" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="../assets/js/dashboard.js" type="text/javascript"></script>
+<script src="./assets/js/blog.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        dashboard.showNotification();
+    });
+</script>
+
+</html>

@@ -30,10 +30,12 @@ $(document).ready(function() {
         document.getElementById("adminmn").remove();
         document.getElementById("chatmn").remove();
         document.getElementById("documentmn").remove();
+        document.getElementById("blogmn").remove();
     } else if (role == 4){
         document.getElementById("staffmn").remove();
         document.getElementById("chatmn").remove();
         document.getElementById("documentmn").remove();
+        document.getElementById("blogmn").remove();
     }
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -54,6 +56,8 @@ function setActive(mnId) {
         document.getElementById("adminmn").className = "";
     if (document.getElementById("documentmn") != null && document.getElementById("documentmn") != undefined)
         document.getElementById("documentmn").className = "";
+    if (document.getElementById("blogmn") != null && document.getElementById("blogmn") != undefined)
+        document.getElementById("blogmn").className = "";
 
     if (document.getElementById(mnId) != null)
         document.getElementById(mnId).className = "nav-item active";

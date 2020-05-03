@@ -36,9 +36,31 @@
             <button id="smit" class="btn btn-primary login-btn btn-block" onclick="login()">Sign in</button>
         </div>
         <div class="clearfix">
-            <a href="#" class="pull-right">Forgot Password?</a>
+            <a href="#" class="pull-right" data-toggle="modal" data-target="#modalFogotPassword">Forgot Password?</a>
         </div>
 	</div>
 </div>
+    <!-- Modal Forgot Password -->
+    <div class="modal" id="modalFogotPassword" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Forgot Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Please Enter Your Email:</label>
+                        <input type="email" class="form-control" name="email" placeholder="Email" required="required" id="txtEmailForgot">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="forgotPass()" type="button" class="btn btn-primary btn-fill">Confirm</button>
+                    <button type="button" class="btn btn-secondary btn-fill" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>                            
