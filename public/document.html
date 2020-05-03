@@ -11,16 +11,20 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!--     Fonts and icons     -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/dashboard.css " rel="stylesheet" />
-    <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="./assets/js/auth.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
+  <!-- CSS Files -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/dashboard.css " rel="stylesheet" />
+  <link href="../assets/css/document.css " rel="stylesheet" />
+  <!-- JS Files -->
+  <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="./assets/js/auth.js"></script>
+  <script src="../assets/js/dashboard.js" type="text/javascript"></script>
+  <script src="../assets/js/document.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -36,63 +40,45 @@
                     $("#ref-navbar").load("../components/navbar.html");
                 </script>
             </div>
-            <div class="content">
+            <div class="content">                
                 <div class="container-fluid">
                     <section>
+                        <div class="container-fluid" id="student_lst">
+                            
+                        </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <form id="fileUploadForm" action="/" enctype="multipart/form-data">
-                                    <fieldset>
-                                        <div class="form-horizontal">
-                                            <div class="form-group">
-                                                <div class="">
-                                                    <div class="col-md-12">
-                                                        <div class="input-group">
-                                                            <input type="hidden" id="filename" name="filename" value="">
-                                                            <input type="file" id="uploadedFile" name="uploadedFile"
-                                                                class="form-control form-control-sm"
-                                                                accept=".docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <div class="input-group-btn">
-                                                                <input type="submit" value="Upload"
-                                                                    class="rounded-0 btn btn-primary">
-                                                            </div>
-                                                        </div>
+                            <div class="col-md-5">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                            <div class="col-md-12 upload-section">
+                                                <div class="input-group">
+                                                    <input type="hidden" id="filename" name="filename" value="">
+                                                    <input type="file" id="uploadedFile" name="uploadedFile"
+                                                        class="form-control form-control-sm"
+                                                        accept=".docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                    <div class="input-group-btn">
+                                                        <button id="uploadBtn" onclick="uploadFile()"
+                                                            class="rounded-0 btn btn-primary">Upload</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                                <div class="col-md-6">
-                                    <div class="chat-list-box">
-                                        <div class="head-box">
-                                            <ul class="list-inline text-left d-inline-block float-left">
-                                                <li> <img src="https://i.ibb.co/fCzfFJw/person.jpg" id="user_img" alt=""
-                                                        style="width: 40px; height: 40px;"> </li>
-                                            </ul>
-                                            <ul class="list-inline text-right d-inline-block float-right">
-                                                <li> <a class="text-white" id="user_name"> </a> </li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="chat-person-list">
-                                            <ul class="list-inline" id="chat_lst">
-                                            </ul>
-                                        </div>
-
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="doc-list-box" id="doc-lst">                                        
                                     </div>
                                 </div> <!-- col-md-4 closed -->
                             </div>
-                            <div class="col-md-6">
-                                <div id="mess_section" class="col-md-12 message-section container-fluid">
-                                </div>
-                                <div class="col-md-12 message-input-section">
+                            <div class="col-md-7" style="display: none;" id="comment-section">
+                                <div class="col-md-12">
                                     <div class="row">
-                                        <textarea class="col-md-10" id="txtMess" placeholder="Write your comment here"
+                                        <textarea rows="1" class="col-md-9" id="txtMess" placeholder="Write your comment here"
                                             name="comment"></textarea>
-                                        <button id="btn_sendMess" class="btn btn-info btn-fill col-md-2"
-                                            type="button">Submit</button>
+                                        <button id="btn-sendMess" onclick="sendComment()" class="btn btn-info btn-fill col-md-3"
+                                            type="button">Send comment</button>
                                     </div>
+                                </div>
+                                <div id="mess_section" class="col-md-12 message-section">
                                 </div>
                             </div>
                         </div>
@@ -113,10 +99,5 @@
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/dashboard.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        dashboard.showNotification();
-    });
-</script>
 
 </html>

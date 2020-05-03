@@ -29,9 +29,11 @@ $(document).ready(function() {
     } else if (role == 3){
         document.getElementById("adminmn").remove();
         document.getElementById("chatmn").remove();
+        document.getElementById("documentmn").remove();
     } else if (role == 4){
         document.getElementById("staffmn").remove();
         document.getElementById("chatmn").remove();
+        document.getElementById("documentmn").remove();
     }
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -39,18 +41,22 @@ $(document).ready(function() {
     setActive(mnId);
 });
 
-function setActive(mnId) {    
-    if (document.getElementById("staffmn") != null)
+function setActive(mnId) {
+    if (document.getElementById("staffmn") != null && document.getElementById("staffmn") != undefined)
         document.getElementById("staffmn").className = "";
-    if (document.getElementById("chatmn") != null)
+    if (document.getElementById("chatmn") != null && document.getElementById("chatmn") != undefined)
         document.getElementById("chatmn").className = "";
-    if (document.getElementById("profilemn") != null)
+    if (document.getElementById("profilemn") != null && document.getElementById("profilemn") != undefined)
         document.getElementById("profilemn").className = "";
-    if (document.getElementById("dashmn") != null)
+    if (document.getElementById("dashmn") != null && document.getElementById("dashmn") != undefined)
         document.getElementById("dashmn").className = "";
-    if (document.getElementById("adminmn") != null)
+    if (document.getElementById("adminmn") != null && document.getElementById("adminmn") != undefined)
         document.getElementById("adminmn").className = "";
-    if (document.getElementById("documentmn") != null)
+    if (document.getElementById("documentmn") != null && document.getElementById("documentmn") != undefined)
         document.getElementById("documentmn").className = "";
-    document.getElementById(mnId).className = "nav-item active";
+
+    if (document.getElementById(mnId) != null)
+        document.getElementById(mnId).className = "nav-item active";
+    else
+        document.getElementById("dashmn").className = "nav-item active";
 }

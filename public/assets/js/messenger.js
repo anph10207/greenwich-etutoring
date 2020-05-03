@@ -18,14 +18,14 @@ $(document).ready(function () {
         document.getElementById("chat_lst").innerHTML = content;
         stuId = userInfo.id;
         tutId = userInfo.tutor.id;
-        getMessage(stuId, tutId, stuId, 0, 20);
+        getMessage(tutId, stuId, 0, 20);
     } else {
         tutId = userInfo.id;
         getstudentoftutor(tutId);
     }
 });
 
-function getMessage(senderId, tutorId, studentId, start, limit) {
+function getMessage(tutorId, studentId, start, limit) {
     var host_url = localStorage.getItem("host_url");
     setActiveChat("student" + studentId);
     axios({
@@ -45,14 +45,12 @@ function getMessage(senderId, tutorId, studentId, start, limit) {
             for (var i = 0; i < getChatLst.length; i++) {
                 const mess = getChatLst[i];
                 if (mess.sender.id == studentId) {
-                    console.log("1 " + mess.sender);
                     content +=  `<div class="container">
                                 <img src="${mess.student.avatarViewUrl == null ? "../assets/img/faces/default-1.jpg" : mess.student.avatarViewUrl}" alt="Avatar">
                                 <p>${mess.text}</p>
                                 <span class="time-right">${formatDateNTime(mess.chatDate)}</span>
                                 </div>`
                 } else {
-                    console.log("2 " + mess.sender);
                     content += `<div class="container">
                                 <img src="${mess.tutor.avatarViewUrl == null ? "../assets/img/faces/default-1.jpg" : mess.tutor.avatarViewUrl}" alt="Avatar" class="right">
                                 <p>${mess.text}</p>
@@ -90,7 +88,7 @@ function getstudentoftutor(tutorId, start = 0, limit = 20) {
             for (var i = 0; i < studentList.length; i++) {
                 const student = studentList[i];
                 var img = student.avatarViewUrl == null ? "../assets/img/faces/default-1.jpg" : student.avatarViewUrl;
-                content += `<li id="student${student.id}"> <a href="#" class="flip" onclick="getMessage(${tutorId}, ${tutorId}, ${student.id}, 0, 20)"> 
+                content += `<li id="student${student.id}"> <a href="#" class="flip" onclick="getMessage(${tutorId}, ${student.id}, 0, 20)"> 
                         <img src="${img}" alt=""> <span> ${student.firstName}`
                     + ` ${student.lastName}</span></a> </li>`;
             }
@@ -127,7 +125,8 @@ function sendMessage(tutorId, studentId) {
     })
         .then(function (res) {
             console.log(res.data)
-            getMessage(senderId, tutorId, studentId, 0, 20);
+            document.getElementById("txtMess").value = "";
+            getMessage(tutorId, studentId, 0, 20);
         })
         .catch(function (error) {
             console.log(error);
