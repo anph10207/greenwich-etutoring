@@ -39,6 +39,29 @@ function login() {
         });
 }
 
+function forgotPass() {
+    const emailForgot = document.getElementById("txtEmailForgot").value;
+    var host_url = localStorage.getItem("host_url");
+
+    axios({
+        method: "POST",
+        url: host_url + "/user/" + emailForgot + "/forgotPassword",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: {
+        }
+    })
+        .then(function (res) {
+            alert("New Password Send Your Email")
+            $('#modalFogotPassword').modal('hide');
+            window.location.reload()
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
 $(document).ready(function() {
     const host_url = $.getJSON( "../../config.json", function( json ) {
         localStorage.setItem("host_url", json.server_host);

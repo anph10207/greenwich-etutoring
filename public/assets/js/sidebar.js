@@ -29,9 +29,11 @@ $(document).ready(function() {
     } else if (role == 3){
         document.getElementById("adminmn").remove();
         document.getElementById("chatmn").remove();
+        document.getElementById("blogmn").remove();
     } else if (role == 4){
         document.getElementById("staffmn").remove();
         document.getElementById("chatmn").remove();
+        document.getElementById("blogmn").remove();
     }
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
