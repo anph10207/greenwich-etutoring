@@ -75,29 +75,42 @@ function createStudentList(list) {
     document.getElementById("studentListContent").innerHTML = content;
 }
 
-// function getId() {
-//     var user_id = document.getElementById("student").value;
-//     console.log(user_id)
-// }
-
-
 function countAll() {
     const tutor_id = document.getElementById("tutorListContent").value;
-    console.log(tutor_id)
     const no_day = document.getElementById("getDays").value;
-    console.log(no_day)
     var body = document.getElementById("studentListContent");
     var lst = body.getElementsByTagName("tr");
     for(var i = 0; i < lst.length; i++){
-        console.log(lst[i].cells[0].innerHTML);
-        countElement(lst[i].cells[0].innerHTML,tutor_id,no_day)
+        countElement(lst[i].cells[0].innerHTML,tutor_id,no_day, "studentId" + lst[i].cells[0].innerHTML);
     }
     
 }
 
-function countElement(user_id,tutor_id, no_day){
+function countForStudent() {
+    const credentials = localStorage.getItem("credentials");
+    var userInfo = JSON.parse(credentials);
+    const tutor_id = userInfo.tutor.id;    
+    const no_day = document.getElementById("getDays").value;
+    var body = document.getElementById("messageNo");
+    countElement(userInfo.id,tutor_id,no_day, "messageNo");    
+}
+
+function countForTutor() {
+    const credentials = localStorage.getItem("credentials");
+    var userInfo = JSON.parse(credentials);
+    const tutor_id = userInfo.id;    
+    const no_day = document.getElementById("getDays").value;
+    var body = document.getElementById("studentListContent");
+    var lst = body.getElementsByTagName("tr");
+    for(var i = 0; i < lst.length; i++){
+        countElement(lst[i].cells[0].innerHTML,tutor_id,no_day, "studentId" + lst[i].cells[0].innerHTML);
+    }
+    
+}
+
+async function countElement(user_id,tutor_id, no_day,element_id){
     var host_url = localStorage.getItem("host_url");
-    axios({
+    let data = axios({
         method: "GET",
         url: host_url + "/chat/number",
         headers: {
@@ -110,14 +123,45 @@ function countElement(user_id,tutor_id, no_day){
         }
     })
         .then(function (res) {
-            document.getElementById("studentId" + user_id).innerHTML = res.data;
+            document.getElementById(element_id).innerHTML = res.data;
             console.log(res.data)
         })
         .catch(function (error) {
             console.log(error);
         })
+    return data;
 }
 
 $(document).ready(function() {
-    getalltutor();
+    const credentials = localStorage.getItem("credentials");
+    var userInfo = JSON.parse(credentials);
+    var tutorId = userInfo.id;
+    if (userInfo.role.id == 3){
+        getalltutor();
+    } else if (userInfo.role.id == 2){
+        var host_url = localStorage.getItem("host_url");
+        var tutorId = userInfo.id;
+        var start = 0;
+        var limit = 20;
+        axios({
+            method: "GET",
+            url: host_url + "/user/getStudents",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
+                tutorId,
+                start,
+                limit
+            }
+        })
+            .then(function (res) {
+                studentList = res.data;
+                console.log(studentList)
+                createStudentList(studentList);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }    
 });
