@@ -27,8 +27,11 @@ function uploadFile() {
     var senderId = null;
     if (userInfo.role.id == 1){
         studentId = userInfo.id;
-        console.log(userInfo.tutor);
         tutorId = userInfo.tutor.id;
+        senderId = userInfo.id;
+    } else if (userInfo.role.id == 2){
+        studentId = document.getElementById("student-btn").value;
+        tutorId = userInfo.id;
         senderId = userInfo.id;
     }
     var x = document.getElementById("uploadedFile");
