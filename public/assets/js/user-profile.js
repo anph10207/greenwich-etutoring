@@ -99,7 +99,7 @@ function changepassword() {
     var host_url = localStorage.getItem("host_url");
     axios({
         method: "POST",
-        url: "http://34.87.179.204:9090/user/updatePassword",
+        url: host_url + "/user/updatePassword",
         headers: {
             'Content-Type': 'application/json'
         },
