@@ -37,8 +37,8 @@ $(document).ready(function() {
     });
     const credentials = localStorage.getItem("credentials");
     var userInfo = JSON.parse(credentials);
-    document.getElementById("calendar-section").src = "https://calendar.google.com/calendar/embed?src=" + userInfo.email;
-    
+    if (document.getElementById("calendar-section") != null)
+        document.getElementById("calendar-section").src = "https://calendar.google.com/calendar/embed?src=" + userInfo.email;    
 });
 
 // activate collapse right menu when the windows is resized

@@ -18,7 +18,7 @@ $(document).ready(function () {
         document.getElementById("chat_lst").innerHTML = content;
         stuId = userInfo.id;
         tutId = userInfo.tutor.id;
-        getMessage(tutId, stuId, 0, 20);
+        getMessage(tutId, stuId, 0, 100);
     } else {
         tutId = userInfo.id;
         getstudentoftutor(tutId);
@@ -88,7 +88,7 @@ function getstudentoftutor(tutorId, start = 0, limit = 20) {
             for (var i = 0; i < studentList.length; i++) {
                 const student = studentList[i];
                 var img = student.avatarViewUrl == null ? "../assets/img/faces/default-1.jpg" : student.avatarViewUrl;
-                content += `<li id="student${student.id}"> <a href="#" class="flip" onclick="getMessage(${tutorId}, ${student.id}, 0, 20)"> 
+                content += `<li id="student${student.id}"> <a href="#" class="flip" onclick="getMessage(${tutorId}, ${student.id}, 0, 100)"> 
                         <img src="${img}" alt=""> <span> ${student.firstName}`
                     + ` ${student.lastName}</span></a> </li>`;
             }
@@ -126,7 +126,7 @@ function sendMessage(tutorId, studentId) {
         .then(function (res) {
             console.log(res.data)
             document.getElementById("txtMess").value = "";
-            getMessage(tutorId, studentId, 0, 20);
+            getMessage(tutorId, studentId, 0, 100);
         })
         .catch(function (error) {
             console.log(error);
