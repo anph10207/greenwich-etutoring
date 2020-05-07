@@ -152,6 +152,7 @@ function update() {
     var tutorId = droptutor.options[droptutor.selectedIndex].value
     var studentIds = lst.split(',');
     var host_url = localStorage.getItem("host_url");
+    $("html").addClass("waiting");
     axios({
         method: "PUT",
         url: host_url + "/user/assignStudents",
@@ -188,14 +189,17 @@ function update() {
             }
         })
             .then(function (res) {
+                $("html").removeClass("waiting");
                 console.log(res.data);
                 window.location.reload(true);
             })
             .catch(function (error) {
+                $("html").removeClass("waiting");
                 console.log(error);
             })
         })
         .catch(function (error) {
+            $("html").removeClass("waiting");
             console.log(error);
         })
         

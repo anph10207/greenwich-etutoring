@@ -5157,3 +5157,7 @@ License - nucleoapp.com/license/
 }
 /* all icon font classes list here */
 
+html.waiting
+ {
+    cursor:wait;
+ }
