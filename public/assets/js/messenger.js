@@ -58,6 +58,9 @@ function getMessage(tutorId, studentId, start, limit) {
                                 </div>`
                 }
             }
+            var btn_send = document.getElementById("btn_sendMess");
+            btn_send_clone = btn_send.cloneNode(true);
+            btn_send.parentNode.replaceChild(btn_send_clone, btn_send);
             document.getElementById("btn_sendMess").addEventListener('click', function() {
                 sendMessage(tutorId, studentId);
             }, false);
