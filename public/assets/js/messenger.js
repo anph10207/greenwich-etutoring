@@ -105,7 +105,6 @@ function sendMessage(tutorId, studentId) {
     const senderId = userInfo.id;
     var host_url = localStorage.getItem("host_url");
     const text = document.getElementById("txtMess").value.trim();
-    console.log(text);
     if (text == null || text == "") {
         alert("Please input message.");
         return;
@@ -116,7 +115,6 @@ function sendMessage(tutorId, studentId) {
         headers: {
             'Content-Type': 'application/json'
         },
-        crossdomain:true,
         data: {
             studentId,
             tutorId,
