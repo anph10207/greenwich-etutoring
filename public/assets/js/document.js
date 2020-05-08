@@ -189,7 +189,7 @@ function sendComment() {
     const userId = userInfo.id;
     const documentId = document.getElementById("btn-sendMess").value;
     var host_url = localStorage.getItem("host_url");
-    const text = document.getElementById("txtMess").value;
+    const text = document.getElementById("txtMess").value.trim();
     if (text == null || text == "") {
         alert("Please input message.");
         return;

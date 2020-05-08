@@ -104,7 +104,8 @@ function sendMessage(tutorId, studentId) {
     var userInfo = JSON.parse(credentials);
     const senderId = userInfo.id;
     var host_url = localStorage.getItem("host_url");
-    const text = document.getElementById("txtMess").value;
+    const text = document.getElementById("txtMess").value.trim();
+    console.log(text);
     if (text == null || text == "") {
         alert("Please input message.");
         return;
